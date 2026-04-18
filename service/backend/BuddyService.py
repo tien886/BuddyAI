@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend import BuddyCalendar as calendar_svc
 from backend import BuddyDocument as document_svc
 from backend import BuddyUser as user_svc
-from client import UITBuddyClient
+from client.BuddyClient import UITBuddyClient
 
 
 class BuddyService:

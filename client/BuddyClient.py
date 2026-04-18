@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 import httpx
-from config import UIT_BUDDY_BASE_URL, UIT_BUDDY_TIMEOUT
-from exception import BackendAPIError
+from config.AppConfig import UIT_BUDDY_BASE_URL, UIT_BUDDY_TIMEOUT
+from exception.BuddyException import BackendAPIError
 
 
 

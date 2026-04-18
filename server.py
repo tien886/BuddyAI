@@ -7,10 +7,10 @@ from fastapi import FastAPI, Header, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
-from config import SERVER_HOST, SERVER_PORT
+from config.AppConfig import SERVER_HOST, SERVER_PORT
 from service.backend.BuddyService import get_buddy_service 
 from client.BuddyClient import UITBuddyClient
-from exception import BackendAPIError
+from exception.BuddyException import BackendAPIError
 app = FastAPI(
     title="BuddyAI — UIT Buddy Backend Proxy",
     description="Proxies authenticated requests to UIT Buddy Backend for BuddyAI.",

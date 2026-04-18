@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from client.BuddyClient import UITBuddyClient
-from exception import BackendAPIError
+from exception.BuddyException import BackendAPIError
 
 # ---------------------------------------------------------------------------
 # Deadlines
