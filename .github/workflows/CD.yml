@@ -1,0 +1,45 @@
+name: BuddyAI CD
+
+on:
+  workflow_run:
+    workflows: ["BuddyAI CI"]
+    types:
+      - completed
+    branches:
+      - main
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  GITOPS_REPO: ${{ github.repository_owner }}/Buddy-AI-GitOps-Manifest
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy-to-production:
+    name: Deploy BuddyAI to Production Server
+    runs-on: self-hosted
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout GitOps Manifests
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.GITOPS_REPO }}
+          path: gitops-manifests
+          ref: main
+
+      - name: Create env
+        env:
+          BACKEND_ENV_CONTENT: ${{ secrets.BUDDYAI_ENV_FILE }}
+        run: |
+          printf "%s" "$BACKEND_ENV_CONTENT" > gitops-manifests/buddyai.env
+
+      - name: Deploy Locally on Self-Hosted
+        env:
+          IMAGE_TAG: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -e
+          cd gitops-manifests
+          sudo make up
