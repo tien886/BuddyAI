@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from client.buddy_client import UITBuddyClient
-from exception.buddy_exception import BackendAPIError
+from exception.buddy.buddy_exception import BackendAPIError
 
 async def get_folder(
     client: UITBuddyClient,
@@ -84,3 +84,34 @@ async def download_document(
     if not response.is_success:
         raise BackendAPIError(response.status_code, response.text)
     return response.content
+
+
+async def get_shared_documents(
+    client: UITBuddyClient,
+    token: str,
+    keyword: str = "",
+    page: int = 1,
+    limit: int = 15,
+    sortType: str = "desc",
+    sortBy: str = "createdAt",
+) -> dict:
+    """
+    GET /api/document/shared-with-me — list documents shared with the current user.
+
+    Returns the parsed JSON dict from the backend.
+    Raises BackendAPIError on non-2xx.
+    """
+    response = await client.get(
+        "/api/document/shared-with-me",
+        token=token,
+        params={
+            "keyword": keyword,
+            "page": page,
+            "limit": limit,
+            "sortType": sortType,
+            "sortBy": sortBy,
+        },
+    )
+    if not response.is_success:
+        raise BackendAPIError(response.status_code, response.text)
+    return response.json()

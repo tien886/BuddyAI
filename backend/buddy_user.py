@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from client.buddy_client import UITBuddyClient
-from exception.buddy_exception import BackendAPIError
+from exception.buddy.buddy_exception import BackendAPIError
 
 
 async def get_me(client: UITBuddyClient, token: str) -> dict:

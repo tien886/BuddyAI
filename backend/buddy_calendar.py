@@ -2,11 +2,8 @@
 from __future__ import annotations
 
 from client.buddy_client import UITBuddyClient
-from exception.buddy_exception import BackendAPIError
+from exception.buddy.buddy_exception import BackendAPIError
 
-# ---------------------------------------------------------------------------
-# Deadlines
-# ---------------------------------------------------------------------------
 
 async def get_deadlines(
     client: UITBuddyClient,
@@ -68,9 +65,6 @@ async def create_deadline(
     return response.json()
 
 
-# ---------------------------------------------------------------------------
-# Calendar
-# ---------------------------------------------------------------------------
 
 async def get_calendar(
     client: UITBuddyClient,
