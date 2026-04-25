@@ -43,4 +43,4 @@ jobs:
         run: |
           set -e
           cd gitops-manifests
-          sudo make up
+          make up
