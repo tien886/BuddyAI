@@ -61,3 +61,7 @@ volumes:
   neo4j_data:     
   neo4j_logs:     
   rag_working:    
+
+networks:
+  buddyai-net:
+    name: buddyai-net
