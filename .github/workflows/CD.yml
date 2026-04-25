@@ -38,8 +38,6 @@ jobs:
           printf "%s" "$BACKEND_ENV_CONTENT" > gitops-manifests/buddyai.env
 
       - name: Deploy Locally on Self-Hosted
-        env:
-          IMAGE_TAG: ${{ github.event.workflow_run.head_sha }}
         run: |
           set -e
           cd gitops-manifests
