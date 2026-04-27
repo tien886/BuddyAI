@@ -42,3 +42,5 @@ jobs:
           set -e
           cd gitops-manifests
           make up
+          make start
+          
