@@ -27,4 +27,4 @@ RUN mkdir -p /app/rag_working/neo4j_import \
  && chown -R appuser:appgroup /app
 USER appuser
 EXPOSE 8000
-CMD ["python", "-m", "uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2", "--log-level", "info", "--access-log"]
