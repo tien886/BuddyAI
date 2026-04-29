@@ -167,7 +167,7 @@ class RagService:
                 context["errors"].append(f"deadline_error: {exc.status_code} {exc.detail}")
         if BackendEndpoint.SCHEDULE_DEADLINE_CREATE.value in endpoint_map:
             try:
-                params = endpoint_map[BackendEndpoint.SCHEDULE_DEADLINE_CREATE.value].get("query_params", {})
+                params = endpoint_map[BackendEndpoint.SCHEDULE_DEADLINE_CREATE.value].get("body", {})
                 context["deadline"] = await buddy_service.create_deadline(
                     token=token,
                     exerciseName=params.get("exerciseName"),
